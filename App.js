@@ -3,19 +3,15 @@ import { StyleSheet, Text, View } from 'react-native';
 import Accelerometer from './Accelerometer';
 import ContactsExport from './ContactsExport';
 import fn from './ContactsExport';
+import Login from './Login.js';
 import SendCard from './sendCard';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
-      closeby: false
-    }
-  }
-
-  componentDidMount() {
-    // fn();
+      isLoggedIn: false
+    };
   }
 
   render() {
@@ -28,6 +24,8 @@ export default class App extends React.Component {
     );
   }
 }
+
+
 
 function collision(p1, p2){
   if (math.pow(p1.location.coords.latitude-p2.location.coords.latitude, 2) +
