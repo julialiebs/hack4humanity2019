@@ -13,13 +13,26 @@ export default class App extends React.Component {
     this.state = {
       isLoggedIn: false
     };
+
+    this.handleBump = this.handleBump.bind(this);
+  }
+
+  handleBump(data) {
+    console.log('Bump occurred!');
+    //lat long //timespan
+    console.log("Here's the stats:" + data);
+    
+    <Text style={{fontWeight: 'bold', color: 'blue'}}>
+        Nice Bumping! {data}
+        </Text>
+
   }
 
   render() {
     return (
       <View style={styles.container}>
         <Text>Open up App.js to start working on your app!</Text>
-        <Accelerometer></Accelerometer>
+        <Accelerometer onBump={this.handleBump}></Accelerometer>
         <SendCard></SendCard>
       </View>
     );
