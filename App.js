@@ -1,4 +1,5 @@
 import React from 'react';
+import axios from 'axios';
 import { StyleSheet, Text, View } from 'react-native';
 import Accelerometer from './Accelerometer';
 import ContactsExport from './ContactsExport';
@@ -17,11 +18,29 @@ export default class App extends React.Component {
     this.handleBump = this.handleBump.bind(this);
   }
 
+  componentDidMount() {
+    const params = {
+      response_type: 'code',
+      client_id: 'bcd4b5f9529740eea81589bdf258c9a8',
+      scope: 'user-top-read user-follow-modify',
+      redirect_uri: 'bumpapp://auth'
+    };
+
+    axios.get('https://accounts.spotify.com/authorize', { params })
+      .then(res => {
+        console.log(res);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
+  }
+
   handleBump(data) {
     console.log('Bump occurred!');
     //lat long //timespan
     console.log("Here's the stats:" + data);
-    
+
     <Text style={{fontWeight: 'bold', color: 'blue'}}>
         Nice Bumping! {data}
         </Text>
@@ -37,16 +56,6 @@ export default class App extends React.Component {
       </View>
     );
   }
-}
-
-
-
-function collision(p1, p2) {
-  if (math.pow(p1.location.coords.latitude - p2.location.coords.latitude, 2) +
-    math.pow(p1.location.coords.longitude - p2.location.coords.longitude, 2) <= 0.0001) {
-    if (p1.accelerationSuddenChange == 1 && p2.accelerationSuddenChange == 1) return true;
-  }
-  return false;
 }
 
 function round(n) {

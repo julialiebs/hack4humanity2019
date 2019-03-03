@@ -28,7 +28,7 @@ export default class AccelerometerSensor extends React.Component {
         const { onBump } = this.props;
 
         this._toggle();
-        this.socket.on('bumped', onBump(data));
+        this.socket.on('bumped', onBump);
     }
 
     componentWillUnmount() {
