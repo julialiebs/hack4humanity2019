@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
-import { Alert, Button, TextInput, View, StyleSheet } from 'react-native';
+import { Alert, Button, TextInput, View, StyleSheet, Text } from 'react-native';
+
 
 export default class Login extends Component {
   constructor(props) {
     super(props);
     this.state = {
+    	isLoggedIn: false,
 		fullname: '',
 		email: '',
    	};
@@ -20,12 +22,14 @@ export default class Login extends Component {
   onLogin() {
     // const { fullname, email, phone, organization, location } = this.state;
     // Alert.alert('Credentials', `${fullname} + ${email} + ${phone} + ${organization} + ${location}`);
-    const { fullname, email } = this.state;
+    // const { fullname, email } = this.state;
+    console.log("User logged in");
+    this.setState({isLoggedIn: true});
     // Alert.alert('Credentials', `${fullname} + ${email} `);
   }
 
-  render() {
-    return (
+  doLogin(){
+  	return (
       <View style={styles.container}>
         <TextInput
           value={this.state.fullname}
@@ -46,6 +50,16 @@ export default class Login extends Component {
         />
       </View>
     );
+  }
+
+  render() {
+  	const { isLoggedIn } = this.state;
+
+  	if (isLoggedIn) {
+  		return <Text>Go bump!</Text>;
+  	} else {
+  		return this.doLogin();
+  	}
   }
 }
 

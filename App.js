@@ -1,11 +1,11 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Accelerometer from './Accelerometer.js';
+import Accelerometer from './Accelerometer';
 import ContactsExport from './ContactsExport';
 import fn from './ContactsExport';
 import Login from './Login.js';
+import SendCard from './sendCard';
 
-// const isLoggedIn = props.isLoggedIn;
 export default class App extends React.Component {
   // componentDidMount() {
   //   fn();
@@ -13,19 +13,25 @@ export default class App extends React.Component {
   state = {
     isLoggedIn: false
   };
-
   render() {
-    const { isLoggedIn } = this.state;
-
     return (
       <View style={styles.container}>
-
-        {isLoggedIn ? <Text>Go Bump!</Text> : <Login />}
-
-        
+        <Login />
+        <Accelerometer />
+        <SendCard />
       </View>
     );
   }
+}
+
+
+
+function collision(p1, p2){
+  if(((math.abs(p1.location.coords.latitude-p2.location.coords.latitude))<=.0000000000001)
+  && (math.abs(p1.location.coords.longitude-p2.location.coords.longitude))<=.0000000000001 ){
+    if(p1.accelerationSuddenChange==1&&p2.accelerationSuddenChange==1) return true;
+  }
+  return false;
 }
 
 function round(n) {
