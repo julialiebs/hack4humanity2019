@@ -1,9 +1,9 @@
 {
-  "expoServerPort": null,
+  "expoServerPort": 19000,
   "expoServerNgrokUrl": "https://vn-cjd.anonymous.hack4humanity2019.exp.direct",
   "packagerNgrokUrl": "https://packager.vn-cjd.anonymous.hack4humanity2019.exp.direct",
-  "ngrokPid": 12409,
+  "ngrokPid": 13806,
   "devToolsPort": 19002,
-  "packagerPort": null,
-  "packagerPid": null
+  "packagerPort": 19003,
+  "packagerPid": 13786
 }
