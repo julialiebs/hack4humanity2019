@@ -1,6 +1,6 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
-import Accelerometer from './Accelerometer.js';
+import Accelerometer from './Accelerometer';
 import ContactsExport from './ContactsExport';
 import fn from './ContactsExport';
 import SendCard from './SendCard';
@@ -14,9 +14,13 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Open up App.js to start working on your app!</Text>
+<<<<<<< Updated upstream
         <Accelerometer></Accelerometer>
         <SendCard></SendCard>
 
+=======
+        <Accelerometer />
+>>>>>>> Stashed changes
       </View>
     );
   }
