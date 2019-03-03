@@ -9,7 +9,10 @@ const fn = async () => {
     if (data.length > 0) {
         const contact = data[0];
         console.log(data);
+        return data;
     }
+
+    return null;
 }
 
 export default fn;

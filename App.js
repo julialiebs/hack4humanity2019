@@ -3,6 +3,7 @@ import { StyleSheet, Text, View } from 'react-native';
 import Accelerometer from './Accelerometer.js';
 import ContactsExport from './ContactsExport';
 import fn from './ContactsExport';
+import ContactsList from './ContactsList';
 
 export default class App extends React.Component {
   componentDidMount() {
