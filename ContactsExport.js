@@ -1,11 +1,6 @@
 // in managed apps:
 import { Contacts } from 'expo';
 
-dummyContact = {
-    name: 'joe',
-    last: 'smith',
-    email: "joesmith@gmail.com"
-}
 
 const fn = async () => {
     const { data } = await Contacts.getContactsAsync({
@@ -22,4 +17,4 @@ const fn = async () => {
 }
 
 //later change dummy to fn
-export default dummyContact;
+export default fn;

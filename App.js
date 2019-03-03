@@ -4,8 +4,10 @@ import Accelerometer from './Accelerometer';
 import ContactsExport from './ContactsExport';
 import fn from './ContactsExport';
 import SendCard from './SendCard';
+import Nav from './Nav'
 
 export default class App extends React.Component {
+
   componentDidMount() {
     fn();
   }
@@ -16,6 +18,8 @@ export default class App extends React.Component {
         <Text>Open up App.js to start working on your app!</Text>
         <Accelerometer></Accelerometer>
         <SendCard></SendCard>
+
+        {/* <Nav></Nav> */}
 
       </View>
     );
