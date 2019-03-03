@@ -40,7 +40,8 @@ export default class LocationInfo extends Component {
       this.setState({ location });
 
       const { latitude, longitude } = location.coords;
-      this.props.onLocationUpdate({ latitude, longitude });
+      const timestamp = location.timestamp;
+      this.props.onLocationUpdate({ latitude, longitude, timestamp });
     };
 
     render() {
