@@ -81,6 +81,8 @@ export default class AccelerometerSensor extends React.Component {
   }
 }
 
+function collision(</Person>)
+
 function round(n) {
   if (!n) {
     return 0;
