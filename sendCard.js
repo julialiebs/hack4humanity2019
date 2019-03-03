@@ -9,8 +9,8 @@ export default class SendCard extends React.Component {
     constructor(props) {
         super(props);
         this.onPress = '';
-        this.socket = SocketIOClient('https://bumphackathon.herokuapp.com:8000');
-        this.socket.emit('bump', 'Hi server'); // emits 'hi server' to your server
+        this.socket = SocketIOClient('http://138.68.42.201:80');
+        this.socket.emit('bump', 'Hi server');
 
     }
 
@@ -21,7 +21,7 @@ export default class SendCard extends React.Component {
             action: 'click'
         };
 
-        this.socket.emit('bump', dataObj);
+        //this.socket.emit('bump', dataObj);
     }
 
     render() {
