@@ -1,9 +1,9 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": null,
-  "packagerPid": null,
-  "expoServerNgrokUrl": "https://m6-4ei.anonymous.bump.exp.direct",
-  "packagerNgrokUrl": "https://packager.m6-4ei.anonymous.bump.exp.direct",
-  "ngrokPid": 7016
+  "packagerPort": 19001,
+  "packagerPid": 8186,
+  "expoServerNgrokUrl": "https://m6-4ei.anonymous.hack4humanity2019.exp.direct",
+  "packagerNgrokUrl": "https://packager.m6-4ei.anonymous.hack4humanity2019.exp.direct",
+  "ngrokPid": 8203
 }
