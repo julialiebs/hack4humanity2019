@@ -14,22 +14,18 @@ export default class App extends React.Component {
     return (
       <View style={styles.container}>
         <Text>Open up App.js to start working on your app!</Text>
-<<<<<<< Updated upstream
         <Accelerometer></Accelerometer>
         <SendCard></SendCard>
 
-=======
-        <Accelerometer />
->>>>>>> Stashed changes
       </View>
     );
   }
 }
 
-function collision(p1, p2){
-  if(((math.abs(p1.location.coords.latitude-p2.location.coords.latitude))<=.0000000000001)
-  && (math.abs(p1.location.coords.longitude-p2.location.coords.longitude))<=.0000000000001 ){
-    if(p1.accelerationSuddenChange==1&&p2.accelerationSuddenChange==1) return true;
+function collision(p1, p2) {
+  if (((math.abs(p1.location.coords.latitude - p2.location.coords.latitude)) <= .0000000000001)
+    && (math.abs(p1.location.coords.longitude - p2.location.coords.longitude)) <= .0000000000001) {
+    if (p1.accelerationSuddenChange == 1 && p2.accelerationSuddenChange == 1) return true;
   }
   return false;
 }
