@@ -13,7 +13,9 @@ websocket.on('connection', (socket) => {
     socket.on('bump', data => {
         console.log('Its bumpin!');
     });
-
+    socket.on('location', data => {
+        console.log(data);
+    });
 
 });
 
