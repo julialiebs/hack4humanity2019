@@ -4,7 +4,7 @@ import { Constants, Location, Permissions } from 'expo';
 
 
 
-export default class SensorInfo extends Component {
+export default class LocationInfo extends Component {
     constructor(props) {
         super(props);
 
@@ -36,8 +36,11 @@ export default class SensorInfo extends Component {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      console.log(location);
+      // console.log(location);
       this.setState({ location });
+
+      const { latitude, longitude } = location.coords;
+      this.props.onLocationUpdate({ latitude, longitude });
     };
 
     render() {

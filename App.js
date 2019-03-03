@@ -2,7 +2,6 @@ import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Accelerometer from './Accelerometer';
 import ContactsExport from './ContactsExport';
-import SensorInfo from './sensor_info';
 import fn from './ContactsExport';
 import SendCard from './sendCard';
 
@@ -16,7 +15,7 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    fn();
+    // fn();
   }
 
   render() {
@@ -25,7 +24,6 @@ export default class App extends React.Component {
         <Text>Open up App.js to start working on your app!</Text>
         <Accelerometer></Accelerometer>
         <SendCard></SendCard>
-        <SensorInfo />
       </View>
     );
   }
