@@ -5,7 +5,9 @@ var socketio = require('socket.io');
 var app = express();
 var server = http.Server(app);
 var websocket = socketio(server);
-server.listen(8000, () => console.log('listening on *:3000'));
+
+const port = process.env.PORT || 5000
+server.listen(port, () => { console.log('Connected to port', port) });
 
 // The event will be called when a client is connected.
 websocket.on('connection', (socket) => {
