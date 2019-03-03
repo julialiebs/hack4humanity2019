@@ -85,28 +85,28 @@ export default class AccelerometerSensor extends React.Component {
             z,
         } = this.state.accelerometerData;
 
-        return (
-            <View style={styles.sensor}>
-                <Text>Accelerometer:</Text>
-                <Text>
-                    x: {round(x)} y: {round(y)} z: {round(z)}
-                </Text>
+        //return (
+            // <View style={styles.sensor}>
+            //     <Text>Accelerometer:</Text>
+            //     <Text>
+            //         x: {round(x)} y: {round(y)} z: {round(z)}
+            //     </Text>
 
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity onPress={this._toggle} style={styles.button}>
-                        <Text>Toggle</Text>
-                    </TouchableOpacity>
-                     <TouchableOpacity onPress={this._slow} style={[styles.button, styles.middleButton]}>
-                        <Text>Slow</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity onPress={this._fast} style={styles.button}>
-                        <Text>Fast</Text>
-                    </TouchableOpacity>
-                </View>
+            //     <View style={styles.buttonContainer}>
+            //         <TouchableOpacity onPress={this._toggle} style={styles.button}>
+            //             <Text>Toggle</Text>
+            //         </TouchableOpacity>
+            //          <TouchableOpacity onPress={this._slow} style={[styles.button, styles.middleButton]}>
+            //             <Text>Slow</Text>
+            //         </TouchableOpacity>
+            //         <TouchableOpacity onPress={this._fast} style={styles.button}>
+            //             <Text>Fast</Text>
+            //         </TouchableOpacity>
+            //     </View>
 
-                <LocationInfo onLocationUpdate={this.handleLocationUpdate} />
-            </View>
-        );
+            //     <LocationInfo onLocationUpdate={this.handleLocationUpdate} />
+            // </View>
+        //);
     }
 }
 

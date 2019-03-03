@@ -6,13 +6,16 @@ import ContactsExport from './ContactsExport';
 import fn from './ContactsExport';
 import Login from './Login.js';
 import SendCard from './sendCard';
-import Nav from './Nav'
+import Nav from './Nav';
+import { Container, Header, Content, ListItem, CheckBox, Text, Body } from 'native-base';
+
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      isLoggedIn: false
+      isLoggedIn: false,
+      bumpOccured: false,
     };
 
     this.handleBump = this.handleBump.bind(this);
@@ -40,17 +43,58 @@ export default class App extends React.Component {
     console.log('Bump occurred!');
     //lat long //timespan
     console.log("Here's the stats:" + data);
+    this.setState({ bumpOccured: true });
   }
 
   render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Accelerometer onBump={this.handleBump}></Accelerometer>
-        <SendCard></SendCard>
+    const { bumpOccured } = this.state;
+
+    if (bumpOccured) {
+      return (
+        <View style={{marginTop: 22}}>
+    <Modal
+          animationType="slide"
+          transparent={false}
+          visible={this.state.modalVisible}>
+<h1 id="connectModal">Success! Select where you want to get connected below</h1>
+      <ListItem>
+          <CheckBox checked={true} />
+            <Body>
+              <Text>Personal Contact</Text>
+            </Body>
+      </ListItem>
+      <ListItem>
+          <CheckBox checked={false} />
+            <Body>
+              <Text>Spotify</Text>
+            </Body>
+      </ListItem>
+      <ListItem>
+          <CheckBox checked={false} color="green"/>
+            <Body>
+              <Text>Instagram</Text>
+            </Body>
+      </ListItem>
+   </Modal>
+
+
+        <TouchableHighlight
+          onPress={() => {
+            this.setModalVisible(true);
+          }}>
+        </TouchableHighlight>
+
+        <TouchableHighlight onDismiss={() => {
+          this.setModalVisible(false);
+          alert('Information has been sent');
+        }}>
+        </TouchableHighlight>
+
       </View>
-    );
+      );
+    }
   }
+
 }
 
 function round(n) {
