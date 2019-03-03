@@ -42,7 +42,7 @@ export default class SensorInfo extends Component {
       if (this.state.errorMessage) {
         text = this.state.errorMessage;
       } else if (this.state.location) {
-        text = JSON.stringify(this.state.location);
+        text = this.state.location.coords.longitude;
       }
 
       return (
