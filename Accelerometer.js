@@ -1,10 +1,12 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Accelerometer } from 'expo';
+import findBump from './FindBump';
 
 export default class AccelerometerSensor extends React.Component {
     state = {
         accelerometerData: {},
+        hasMovedFast: false
     };
 
     componentDidMount() {
@@ -29,17 +31,23 @@ export default class AccelerometerSensor extends React.Component {
 
     _fast = () => {
         Accelerometer.setUpdateInterval(
-            16
+            10 //was 16
         );
     };
 
     _subscribe = () => {
+        let { hasMovedFast } = this.state;
+
         this._subscription = Accelerometer.addListener(
             accelerometerData => {
-                this.setState({ accelerometerData });
+                hasMovedFast = findBump(accelerometerData, hasMovedFast);
+                this.setState({ accelerometerData, hasMovedFast });
             }
         );
+        
     };
+
+
 
     _unsubscribe = () => {
         this._subscription && this._subscription.remove();
@@ -64,7 +72,7 @@ export default class AccelerometerSensor extends React.Component {
                     <TouchableOpacity onPress={this._toggle} style={styles.button}>
                         <Text>Toggle</Text>
                     </TouchableOpacity>
-                    <TouchableOpacity onPress={this._slow} style={[styles.button, styles.middleButton]}>
+                     <TouchableOpacity onPress={this._slow} style={[styles.button, styles.middleButton]}>
                         <Text>Slow</Text>
                     </TouchableOpacity>
                     <TouchableOpacity onPress={this._fast} style={styles.button}>

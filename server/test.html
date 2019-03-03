@@ -1,0 +1,7 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+
+<script>
+  var socket = io('http://138.68.42.201:80');
+  socket.emit('bump', { my: 'data' });
+
+</script>
