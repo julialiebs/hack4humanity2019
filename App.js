@@ -19,20 +19,20 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    const params = {
-      response_type: 'code',
-      client_id: 'bcd4b5f9529740eea81589bdf258c9a8',
-      scope: 'user-top-read user-follow-modify',
-      redirect_uri: 'bumpapp://auth'
-    };
+    // const params = {
+    //   response_type: 'code',
+    //   client_id: 'bcd4b5f9529740eea81589bdf258c9a8',
+    //   scope: 'user-top-read user-follow-modify',
+    //   redirect_uri: 'bumpapp://auth'
+    // };
 
-    axios.get('https://accounts.spotify.com/authorize', { params })
-      .then(res => {
-        console.log(res);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    // axios.get('https://accounts.spotify.com/authorize', { params })
+    //   .then(res => {
+    //     console.log(res.json);
+    //   })
+    //   .catch(err => {
+    //     console.log(err);
+    //   });
 
   }
 
@@ -40,11 +40,6 @@ export default class App extends React.Component {
     console.log('Bump occurred!');
     //lat long //timespan
     console.log("Here's the stats:" + data);
-
-    <Text style={{fontWeight: 'bold', color: 'blue'}}>
-        Nice Bumping! {data}
-        </Text>
-
   }
 
   render() {
