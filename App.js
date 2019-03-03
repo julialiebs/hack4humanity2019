@@ -3,22 +3,26 @@ import { StyleSheet, Text, View } from 'react-native';
 import Accelerometer from './Accelerometer.js';
 import ContactsExport from './ContactsExport';
 import fn from './ContactsExport';
+import Login from './Login.js';
 
-
+// const isLoggedIn = props.isLoggedIn;
 export default class App extends React.Component {
-  componentDidMount() {
-    fn();
-  }
+  // componentDidMount() {
+  //   fn();
+  // }
+  state = {
+    isLoggedIn: false
+  };
 
   render() {
+    const { isLoggedIn } = this.state;
+
     return (
       <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Accelerometer></Accelerometer>
 
+        {isLoggedIn ? <Text>Go Bump!</Text> : <Login />}
 
-
-
+        
       </View>
     );
   }
