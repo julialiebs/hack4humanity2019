@@ -7,7 +7,7 @@ import fn from './ContactsExport';
 import Login from './Login.js';
 import SendCard from './sendCard';
 import Nav from './Nav';
-import { Container, Header, Content, ListItem, CheckBox, Text, Body } from 'native-base';
+import { ListItem, CheckBox, Modal, TouchableHighlight } from 'react-native';
 
 
 export default class App extends React.Component {
@@ -16,9 +16,18 @@ export default class App extends React.Component {
     this.state = {
       isLoggedIn: false,
       bumpOccured: false,
+      modalVisible: false
     };
 
     this.handleBump = this.handleBump.bind(this);
+  }
+
+  resetBump() {
+    this.setState({ bumpOccured: false });
+  }
+
+  setModalVisible(visible) {
+    this.setState({ modalVisible: visible });
   }
 
   componentDidMount() {
@@ -51,30 +60,34 @@ export default class App extends React.Component {
 
     if (bumpOccured) {
       return (
-        <View style={{marginTop: 22}}>
+        <View style={styles.container}>
     <Modal
+          style={styles.container}
           animationType="slide"
           transparent={false}
-          visible={this.state.modalVisible}>
-<h1 id="connectModal">Success! Select where you want to get connected below</h1>
-      <ListItem>
-          <CheckBox checked={true} />
-            <Body>
-              <Text>Personal Contact</Text>
-            </Body>
-      </ListItem>
-      <ListItem>
-          <CheckBox checked={false} />
-            <Body>
-              <Text>Spotify</Text>
-            </Body>
-      </ListItem>
-      <ListItem>
+          visible={this.state.modalVisible}
+          onRequestClose={() => console.log('lala')}>
+          <View style={styles.container}>
+<Text style={styles.large}>Success! Select where you want to get connected below</Text>
+      <View>
+          <CheckBox checked={true} checkedColor='blue'/>
+              <Text style={styles.large}>Personal Contact</Text>
+      </View>
+      <View>
+          <CheckBox checked={false} checkedColor='red'/>
+              <Text style={styles.large}>Spotify</Text>
+      </View>
+      <View>
           <CheckBox checked={false} color="green"/>
-            <Body>
-              <Text>Instagram</Text>
-            </Body>
-      </ListItem>
+              <Text style={styles.large}>Instagram</Text>
+      </View>
+      <TouchableHighlight onPress={() => {
+          this.setModalVisible(false);
+          this.resetBump();
+        }}>
+          <Text style={styles.large}>Close me!</Text>
+        </TouchableHighlight>
+        </View>
    </Modal>
 
 
@@ -82,15 +95,17 @@ export default class App extends React.Component {
           onPress={() => {
             this.setModalVisible(true);
           }}>
-        </TouchableHighlight>
-
-        <TouchableHighlight onDismiss={() => {
-          this.setModalVisible(false);
-          alert('Information has been sent');
-        }}>
+          <Text style={styles.large}>Open me!</Text>
         </TouchableHighlight>
 
       </View>
+      );
+    } else {
+      return (
+        <View style={styles.container}>
+          <Text style={styles.large}>Waiting for bump!</Text>
+          <Accelerometer onBump={this.handleBump} />
+        </View>
       );
     }
   }
@@ -109,7 +124,10 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
-    alignItems: 'center',
+    alignItems: 'flex-start',
     justifyContent: 'center',
   },
+  large: {
+    fontSize: 18,
+  }
 });
