@@ -9,6 +9,7 @@ export default class SensorInfo extends Component {
         super(props);
 
         this.state = {
+          permissionStatus: 'waiting',
           location: null,
           errorMessage: null,
         };
@@ -22,6 +23,8 @@ export default class SensorInfo extends Component {
       } else {
         this._getLocationAsync();
       }
+
+      setInterval(this._getLocationAsync, 1000);
     }
 
     _getLocationAsync = async () => {

@@ -11,7 +11,6 @@ export default class SendCard extends React.Component {
         this.onPress = '';
         this.socket = SocketIOClient('http://localhost:3000');
         this.socket.emit('bump', 'Hi server'); // emits 'hi server' to your server
-
     }
 
     clicked = () => {
