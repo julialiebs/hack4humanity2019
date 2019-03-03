@@ -1,6 +1,7 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Accelerometer } from 'expo';
+import  SensorInfo from './sensor_info';
 
 export default class AccelerometerSensor extends React.Component {
   state = {
@@ -58,7 +59,9 @@ export default class AccelerometerSensor extends React.Component {
         <Text>Accelerometer:</Text>
         <Text>
           x: {round(x)} y: {round(y)} z: {round(z)}
+
         </Text>
+
 
         <View style={styles.buttonContainer}>
           <TouchableOpacity onPress={this._toggle} style={styles.button}>
@@ -71,6 +74,8 @@ export default class AccelerometerSensor extends React.Component {
             <Text>Fast</Text>
           </TouchableOpacity>
         </View>
+
+        <SensorInfo></SensorInfo>
       </View>
     );
   }
