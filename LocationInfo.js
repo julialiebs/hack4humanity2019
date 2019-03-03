@@ -4,11 +4,12 @@ import { Constants, Location, Permissions } from 'expo';
 
 
 
-export default class SensorInfo extends Component {
+export default class LocationInfo extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
+          permissionStatus: 'waiting',
           location: null,
           errorMessage: null,
         };
@@ -22,6 +23,8 @@ export default class SensorInfo extends Component {
       } else {
         this._getLocationAsync();
       }
+
+      setInterval(this._getLocationAsync, 1000);
     }
 
     _getLocationAsync = async () => {
@@ -33,8 +36,11 @@ export default class SensorInfo extends Component {
       }
 
       let location = await Location.getCurrentPositionAsync({});
-      console.log(location);
+      // console.log(location);
       this.setState({ location });
+
+      const { latitude, longitude } = location.coords;
+      this.props.onLocationUpdate({ latitude, longitude });
     };
 
     render() {

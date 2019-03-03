@@ -1,13 +1,28 @@
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { Accelerometer } from 'expo';
+import SocketIOClient from 'socket.io-client';
 import findBump from './FindBump';
+import LocationInfo from './LocationInfo';
 
 export default class AccelerometerSensor extends React.Component {
-    state = {
-        accelerometerData: {},
-        hasMovedFast: false
-    };
+    constructor(props) {
+        super(props);
+
+        this.socket = SocketIOClient('http://138.68.42.201:80');
+
+        this.state = {
+            location: null,
+            accelerometerData: {},
+            hasMovedFast: false
+        };
+
+        this.handleLocationUpdate = this.handleLocationUpdate.bind(this);
+    }
+
+    handleLocationUpdate(location) {
+        this.setState({ location });
+    }
 
     componentDidMount() {
         this._toggle();
@@ -40,14 +55,20 @@ export default class AccelerometerSensor extends React.Component {
 
         this._subscription = Accelerometer.addListener(
             accelerometerData => {
-                hasMovedFast = findBump(accelerometerData, hasMovedFast);
+                result = findBump(accelerometerData, hasMovedFast);
+                if (result === 'bump') {
+                    hasMovedFast = false;
+                    console.log('BUMP DETECTED @', this.state.location);
+                    this.socket.emit('bump', 'Big bumps');
+                    this.socket.emit('location', this.state.location);
+                } else {
+                    hasMovedFast = result;
+                }
                 this.setState({ accelerometerData, hasMovedFast });
             }
         );
-        
+
     };
-
-
 
     _unsubscribe = () => {
         this._subscription && this._subscription.remove();
@@ -79,6 +100,8 @@ export default class AccelerometerSensor extends React.Component {
                         <Text>Fast</Text>
                     </TouchableOpacity>
                 </View>
+
+                <LocationInfo onLocationUpdate={this.handleLocationUpdate} />
             </View>
         );
     }

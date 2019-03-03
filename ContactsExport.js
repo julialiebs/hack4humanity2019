@@ -9,7 +9,7 @@ const fn = async () => {
 
     if (data.length > 0) {
         const contact = data[0];
-        console.log(data);
+        console.log(contact);
         return data;
     }
 

@@ -3,13 +3,16 @@ import { StyleSheet, Text, View } from 'react-native';
 import Accelerometer from './Accelerometer';
 import ContactsExport from './ContactsExport';
 import fn from './ContactsExport';
-import SendCard from './SendCard';
+import Login from './Login.js';
+import SendCard from './sendCard';
 import Nav from './Nav'
 
 export default class App extends React.Component {
-
-  componentDidMount() {
-    fn();
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false
+    };
   }
 
   render() {
@@ -18,17 +21,16 @@ export default class App extends React.Component {
         <Text>Open up App.js to start working on your app!</Text>
         <Accelerometer></Accelerometer>
         <SendCard></SendCard>
-
-        {/* <Nav></Nav> */}
-
       </View>
     );
   }
 }
 
+
+
 function collision(p1, p2) {
-  if (((math.abs(p1.location.coords.latitude - p2.location.coords.latitude)) <= .0000000000001)
-    && (math.abs(p1.location.coords.longitude - p2.location.coords.longitude)) <= .0000000000001) {
+  if (math.pow(p1.location.coords.latitude - p2.location.coords.latitude, 2) +
+    math.pow(p1.location.coords.longitude - p2.location.coords.longitude, 2) <= 0.0001) {
     if (p1.accelerationSuddenChange == 1 && p2.accelerationSuddenChange == 1) return true;
   }
   return false;
