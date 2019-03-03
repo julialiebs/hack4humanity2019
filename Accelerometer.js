@@ -26,6 +26,10 @@ export default class AccelerometerSensor extends React.Component {
 
     componentDidMount() {
         this._toggle();
+        this.socket.on('bumped', data => {
+            console.log(data);
+            styles.container.backgroundColor = '00f';
+        });
     }
 
     componentWillUnmount() {
